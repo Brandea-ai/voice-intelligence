@@ -61,7 +61,5 @@
       "signingIdentity": null
     }
   },
-  "plugins": {
-    "global-shortcut": {}
-  }
+  "plugins": {}
 }
