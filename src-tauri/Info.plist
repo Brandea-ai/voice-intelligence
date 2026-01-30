@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Mikrofon-Berechtigung -->
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Voice Intelligence benötigt Mikrofon-Zugriff um Sprache aufzunehmen und in Text umzuwandeln.</string>
+
+    <!-- Accessibility (für globale Hotkeys) -->
+    <key>NSAccessibilityUsageDescription</key>
+    <string>Voice Intelligence benötigt Bedienungshilfen-Zugriff für globale Tastaturkürzel.</string>
+</dict>
+</plist>
