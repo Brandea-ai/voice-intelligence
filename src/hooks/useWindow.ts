@@ -5,9 +5,15 @@
 
 import { useEffect, useCallback } from "react";
 
+// Tauri v2 Erkennung (konsistent mit VoiceCommandBar)
+const isTauri = (): boolean => {
+  if (typeof window === "undefined") return false;
+  return "__TAURI_INTERNALS__" in window || "isTauri" in window;
+};
+
 export function useWindow() {
   const hideWindow = useCallback(async () => {
-    if (typeof window !== "undefined" && window.__TAURI__) {
+    if (isTauri()) {
       const { getCurrentWindow } = await import("@tauri-apps/api/window");
       const appWindow = getCurrentWindow();
       await appWindow.hide();
@@ -15,7 +21,7 @@ export function useWindow() {
   }, []);
 
   const showWindow = useCallback(async () => {
-    if (typeof window !== "undefined" && window.__TAURI__) {
+    if (isTauri()) {
       const { getCurrentWindow } = await import("@tauri-apps/api/window");
       const appWindow = getCurrentWindow();
       await appWindow.show();
@@ -24,7 +30,7 @@ export function useWindow() {
   }, []);
 
   const centerWindow = useCallback(async () => {
-    if (typeof window !== "undefined" && window.__TAURI__) {
+    if (isTauri()) {
       const { getCurrentWindow } = await import("@tauri-apps/api/window");
       const appWindow = getCurrentWindow();
       await appWindow.center();
@@ -34,7 +40,7 @@ export function useWindow() {
   // Escape-Taste zum Verstecken
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === "Escape" && !event.defaultPrevented) {
         hideWindow();
       }
     };

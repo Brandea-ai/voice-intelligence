@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "Voice Intelligence",
   "version": "0.1.0",
-  "identifier": "com.voice-intelligence.app",
+  "identifier": "com.voiceintelligence.desktop",
   "build": {
     "frontendDist": "../out",
     "devUrl": "http://localhost:3000",
@@ -14,33 +14,31 @@
       {
         "label": "main",
         "title": "Voice Intelligence",
-        "width": 400,
-        "height": 500,
-        "minWidth": 350,
-        "minHeight": 400,
+        "width": 240,
+        "height": 80,
+        "minWidth": 100,
+        "minHeight": 80,
+        "maxWidth": 500,
+        "maxHeight": 700,
         "resizable": true,
+        "contentProtected": false,
         "fullscreen": false,
         "center": true,
         "visible": true,
-        "decorations": true,
-        "transparent": false,
+        "decorations": false,
+        "transparent": true,
         "focus": true,
-        "shadow": true,
+        "shadow": false,
         "closable": true,
         "minimizable": true,
         "maximizable": false,
-        "hiddenTitle": false,
+        "hiddenTitle": true,
         "acceptFirstMouse": true,
         "tabbingIdentifier": "voice-intelligence"
       }
     ],
     "security": {
-      "csp": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://speech.googleapis.com https://api.anthropic.com https://cloud.google.com"
-    },
-    "trayIcon": {
-      "iconPath": "icons/icon.png",
-      "iconAsTemplate": true,
-      "menuOnLeftClick": false
+      "csp": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' wss://api.deepgram.com https://api.deepgram.com https://api.anthropic.com"
     },
     "macOSPrivateApi": true
   },
@@ -58,7 +56,12 @@
       "entitlements": "entitlements.plist",
       "minimumSystemVersion": "12.0",
       "exceptionDomain": null,
-      "signingIdentity": null
+      "signingIdentity": null,
+      "dmg": {
+        "appPosition": { "x": 180, "y": 170 },
+        "applicationFolderPosition": { "x": 480, "y": 170 },
+        "windowSize": { "width": 660, "height": 400 }
+      }
     }
   },
   "plugins": {}

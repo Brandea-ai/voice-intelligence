@@ -1,8 +1,3 @@
-/**
- * Transkript-Anzeige Komponente
- * Wird in Phase 4 implementiert
- */
-
 "use client";
 
 interface TranscriptDisplayProps {
@@ -16,10 +11,11 @@ export function TranscriptDisplay({
 }: TranscriptDisplayProps) {
   if (isLoading) {
     return (
-      <div className="p-md rounded-lg bg-light-bg-secondary dark:bg-dark-bg-secondary">
-        <div className="animate-pulse space-y-2">
-          <div className="h-4 bg-light-border dark:bg-dark-border rounded w-3/4" />
-          <div className="h-4 bg-light-border dark:bg-dark-border rounded w-1/2" />
+      <div className="glass-card p-5 fade-in">
+        <div className="space-y-3">
+          <div className="h-4 rounded-full shimmer w-4/5" />
+          <div className="h-4 rounded-full shimmer w-3/5" />
+          <div className="h-4 rounded-full shimmer w-2/5" />
         </div>
       </div>
     );
@@ -30,8 +26,8 @@ export function TranscriptDisplay({
   }
 
   return (
-    <div className="p-md rounded-lg bg-light-bg-secondary dark:bg-dark-bg-secondary">
-      <p className="text-body text-light-text-primary dark:text-dark-text-primary whitespace-pre-wrap">
+    <div className="glass-card p-5 fade-in">
+      <p className="text-[var(--text-primary)] text-sm leading-relaxed whitespace-pre-wrap">
         {text}
       </p>
     </div>

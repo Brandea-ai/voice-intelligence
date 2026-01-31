@@ -1,8 +1,3 @@
-/**
- * Aufnahme-Steuerung Komponente
- * Wird in Phase 3 implementiert
- */
-
 "use client";
 
 interface RecordButtonProps {
@@ -19,21 +14,30 @@ export function RecordButton({
   disabled = false,
 }: RecordButtonProps) {
   return (
-    <button
-      type="button"
-      onClick={isRecording ? onStop : onStart}
-      disabled={disabled}
-      className="w-20 h-20 rounded-full flex items-center justify-center transition-all
-        bg-light-bg-secondary dark:bg-dark-bg-secondary
-        hover:bg-light-border dark:hover:bg-dark-border
-        disabled:opacity-50 disabled:cursor-not-allowed"
-      aria-label={isRecording ? "Aufnahme stoppen" : "Aufnahme starten"}
-    >
-      <span
-        className={`w-8 h-8 rounded-full transition-all ${
-          isRecording ? "bg-red-500 animate-pulse" : "bg-light-accent dark:bg-dark-accent"
-        }`}
-      />
-    </button>
+    <div className="relative no-drag">
+      {/* Pulse Ringe bei Aufnahme */}
+      {isRecording && (
+        <>
+          <div className="pulse-outer" />
+          <div className="pulse-outer pulse-outer-delayed" />
+        </>
+      )}
+
+      {/* Premium Button */}
+      <button
+        type="button"
+        onClick={isRecording ? onStop : onStart}
+        disabled={disabled}
+        className={`
+          record-button flex items-center justify-center
+          disabled:opacity-50 disabled:cursor-not-allowed
+          ${isRecording ? "recording" : ""}
+        `}
+        aria-label={isRecording ? "Aufnahme stoppen" : "Aufnahme starten"}
+      >
+        {/* Inneres Icon */}
+        <span className={`record-icon ${isRecording ? "recording" : ""}`} />
+      </button>
+    </div>
   );
 }

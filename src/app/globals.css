@@ -2,25 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   THEME SYSTEM - Light & Dark Mode
+   Folgt automatisch der System-Einstellung
+   ============================================ */
+
 :root {
-  /* Hell-Modus (Standard) */
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F5F5F7;
-  --text-primary: #1D1D1F;
-  --text-secondary: #86868B;
-  --accent: #007AFF;
-  --border: #D2D2D7;
+  /* Base Colors */
+  --accent: #0A84FF;
+  --accent-light: #5AC8FA;
+  --accent-glow: rgba(10, 132, 255, 0.6);
+  --red: #FF3B30;
+  --red-light: rgba(255, 59, 48, 0.15);
+  --red-border: rgba(255, 59, 48, 0.3);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dunkel-Modus */
-    --bg-primary: #1C1C1E;
-    --bg-secondary: #2C2C2E;
-    --text-primary: #F5F5F7;
-    --text-secondary: #98989D;
-    --accent: #0A84FF;
-    --border: #38383A;
+/* Dark Mode (Default) */
+:root,
+:root.dark,
+[data-theme="dark"] {
+  --bg-primary: transparent;
+  --bg-glass: rgba(30, 40, 50, 0.88);
+  --bg-glass-hover: rgba(40, 50, 60, 0.92);
+  --bg-element: rgba(255, 255, 255, 0.06);
+  --bg-element-hover: rgba(255, 255, 255, 0.1);
+
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-tertiary: rgba(255, 255, 255, 0.4);
+  --text-hint: rgba(255, 255, 255, 0.5);
+
+  --border-glass: rgba(255, 255, 255, 0.1);
+  --border-light: rgba(255, 255, 255, 0.15);
+  --border-element: rgba(255, 255, 255, 0.1);
+
+  --shadow-glass: rgba(0, 0, 0, 0.3);
+  --shadow-element: rgba(0, 0, 0, 0.2);
+
+  --btn-primary-bg: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(99, 102, 241, 0.2) 100%);
+  --btn-primary-bg-hover: linear-gradient(135deg, rgba(59, 130, 246, 0.35) 0%, rgba(99, 102, 241, 0.3) 100%);
+  --btn-primary-border: rgba(59, 130, 246, 0.25);
+  --btn-primary-shadow: rgba(59, 130, 246, 0.2);
+
+  --control-bg: rgba(0, 0, 0, 0.7);
+  --control-bg-active: rgba(59, 130, 246, 0.8);
+
+  --icon-primary: rgba(255, 255, 255, 0.6);
+  --icon-active: rgba(255, 255, 255, 1);
+  --icon-recording: #ef4444;
+}
+
+/* Light Mode - High Contrast */
+:root.light,
+[data-theme="light"] {
+  --bg-primary: transparent;
+  --bg-glass: rgba(255, 255, 255, 0.92);
+  --bg-glass-hover: rgba(255, 255, 255, 0.96);
+  --bg-element: rgba(0, 0, 0, 0.06);
+  --bg-element-hover: rgba(0, 0, 0, 0.12);
+
+  --text-primary: rgba(0, 0, 0, 0.95);
+  --text-secondary: rgba(0, 0, 0, 0.75);
+  --text-tertiary: rgba(0, 0, 0, 0.55);
+  --text-hint: rgba(0, 0, 0, 0.6);
+
+  --border-glass: rgba(0, 0, 0, 0.15);
+  --border-light: rgba(0, 0, 0, 0.2);
+  --border-element: rgba(0, 0, 0, 0.15);
+
+  --shadow-glass: rgba(0, 0, 0, 0.15);
+  --shadow-element: rgba(0, 0, 0, 0.12);
+
+  --btn-primary-bg: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(99, 102, 241, 0.15) 100%);
+  --btn-primary-bg-hover: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(99, 102, 241, 0.25) 100%);
+  --btn-primary-border: rgba(59, 130, 246, 0.3);
+  --btn-primary-shadow: rgba(59, 130, 246, 0.2);
+
+  --control-bg: rgba(0, 0, 0, 0.7);
+  --control-bg-active: rgba(59, 130, 246, 0.9);
+
+  --icon-primary: rgba(0, 0, 0, 0.7);
+  --icon-active: rgba(0, 0, 0, 0.95);
+  --icon-recording: #dc2626;
+}
+
+/* System Preference Detection (Fallback) - High Contrast */
+@media (prefers-color-scheme: light) {
+  :root:not(.dark):not(.light) {
+    --bg-glass: rgba(255, 255, 255, 0.92);
+    --bg-glass-hover: rgba(255, 255, 255, 0.96);
+    --bg-element: rgba(0, 0, 0, 0.06);
+    --bg-element-hover: rgba(0, 0, 0, 0.12);
+    --text-primary: rgba(0, 0, 0, 0.95);
+    --text-secondary: rgba(0, 0, 0, 0.75);
+    --text-tertiary: rgba(0, 0, 0, 0.55);
+    --text-hint: rgba(0, 0, 0, 0.6);
+    --border-glass: rgba(0, 0, 0, 0.15);
+    --border-light: rgba(0, 0, 0, 0.2);
+    --border-element: rgba(0, 0, 0, 0.15);
+    --shadow-glass: rgba(0, 0, 0, 0.15);
+    --shadow-element: rgba(0, 0, 0, 0.12);
+    --btn-primary-bg: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(99, 102, 241, 0.15) 100%);
+    --btn-primary-bg-hover: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(99, 102, 241, 0.25) 100%);
+    --btn-primary-border: rgba(59, 130, 246, 0.3);
+    --btn-primary-shadow: rgba(59, 130, 246, 0.2);
+    --control-bg: rgba(0, 0, 0, 0.7);
+    --control-bg-active: rgba(59, 130, 246, 0.9);
+    --icon-primary: rgba(0, 0, 0, 0.7);
+    --icon-active: rgba(0, 0, 0, 0.95);
+    --icon-recording: #dc2626;
   }
 }
 
@@ -33,13 +123,24 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow: hidden !important;
   height: 100%;
+  background: transparent !important;
+}
+
+/* Kein Scrolling für Body */
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 body {
   color: var(--text-primary);
-  background: var(--bg-primary);
+  background: transparent !important;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
     "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -48,25 +149,178 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Verhindert Textauswahl beim Drag */
+/* Premium Glass Card */
+.glass-card {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Premium Record Button */
+.record-button {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.record-button:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 15px 50px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.25),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.record-button:active {
+  transform: scale(0.97);
+}
+
+.record-button.recording {
+  box-shadow:
+    0 0 0 3px rgba(255, 59, 48, 0.3),
+    0 0 40px rgba(255, 59, 48, 0.4),
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Inner Button Icon */
+.record-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  box-shadow:
+    0 4px 20px var(--accent-glow),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.record-icon.recording {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #FF3B30 0%, #FF6B6B 100%);
+  box-shadow:
+    0 4px 20px rgba(255, 59, 48, 0.5),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+/* Pulse Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+}
+
+.pulse-outer {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.pulse-outer-delayed {
+  animation-delay: 0.6s;
+}
+
+/* Status Bar */
+.status-bar {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+}
+
+/* Shimmer Loading */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Fade In */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.4s ease-out;
+}
+
+/* Window Drag - WICHTIG für Tauri */
+.drag-region {
+  -webkit-app-region: drag;
+  app-region: drag;
+}
+
+.drag-region * {
+  -webkit-app-region: drag;
+  app-region: drag;
+}
+
 .no-drag {
+  -webkit-app-region: no-drag !important;
+  app-region: no-drag !important;
   -webkit-user-select: none;
   user-select: none;
 }
 
-/* Tauri Window Drag Region */
-.drag-region {
-  -webkit-app-region: drag;
-}
-
-.no-drag-region {
-  -webkit-app-region: no-drag;
-}
-
-/* Scrollbar Styling für macOS-Feeling */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -74,10 +328,145 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   PREMIUM GLASS DESIGN SYSTEM
+   Apple Liquid Glass inspired - Clean & Minimal
+   ============================================ */
+
+/* Haupt-Panel - Premium Glass Look */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px !important;
+  -webkit-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-panel * {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Mikrofon Button */
+.mic-button {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-element);
+  border: 1px solid var(--border-element);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.mic-button:hover {
+  background: var(--bg-element-hover);
+  border-color: var(--border-light);
+}
+
+.mic-button:active {
+  transform: scale(0.95);
+}
+
+.mic-button.mic-active {
+  background: var(--red-light);
+  border-color: var(--red-border);
+}
+
+/* Chip Buttons */
+.chip-button {
+  padding: 8px 14px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--bg-element);
+  border: 1px solid var(--border-element);
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.chip-button:hover {
+  color: var(--text-primary);
+  background: var(--bg-element-hover);
+  border-color: var(--border-light);
+}
+
+/* Primary Action Button */
+.primary-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--btn-primary-bg);
+  border: 1px solid var(--btn-primary-border);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px var(--btn-primary-shadow);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  background: var(--btn-primary-bg-hover);
+  box-shadow: 0 6px 24px var(--btn-primary-shadow);
+  transform: translateY(-1px);
+}
+
+.primary-button:active {
+  transform: translateY(0);
+}
+
+/* Result Text mit sichtbarer Scrollbar */
+.result-text {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+  cursor: text;
+}
+
+.result-text::-webkit-scrollbar {
+  width: 6px;
+  display: block !important;
+}
+
+.result-text::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.result-text::-webkit-scrollbar-thumb {
+  background: var(--text-tertiary);
+  border-radius: 3px;
+}
+
+.result-text::-webkit-scrollbar-thumb:hover {
   background: var(--text-secondary);
+}
+
+/* Spinner Animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }
